@@ -18,6 +18,7 @@ A production-ready **Go REST API template** built with **Gin**, featuring **JWT 
 * End-to-End (E2E) tests
 * Docker & Docker Compose
 * Conventional commits & pre-commit hooks
+* Clean Up script for removing entities
 
 ---
 
@@ -26,6 +27,8 @@ A production-ready **Go REST API template** built with **Gin**, featuring **JWT 
 ```text
 go-rest-api-template/
 ├── .env
+├── .env.example
+├── cleanup.sh
 ├── Dockerfile
 ├── Makefile
 ├── README.md
@@ -215,6 +218,23 @@ go run pkg/database/seeders/main.go up
 # Clear seeded data
 go run pkg/database/seeders/main.go down
 ```
+
+---
+
+## 🧹 Clean Up Script
+
+A bash script to help you clean up generated entities like models, handlers, and routes.
+
+### Usage
+
+```bash
+bash cleanup.sh [option]
+```
+
+Use `all` to remove books related files:
+
+> [!NOTE]  
+> The script may cause the unclean removal of other entities if they share similar names. Please review the script before running it.
 
 ---
 
