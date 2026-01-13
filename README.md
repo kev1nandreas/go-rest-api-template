@@ -17,6 +17,7 @@ A production-ready **Go REST API template** built with **Gin**, featuring **JWT 
 * Database migration & seeding
 * End-to-End (E2E) tests
 * Docker & Docker Compose
+* Conventional commits & pre-commit hooks
 
 ---
 
@@ -214,6 +215,14 @@ go run pkg/database/seeders/main.go up
 # Clear seeded data
 go run pkg/database/seeders/main.go down
 ```
+
+---
+
+## 🔒 Pre Commit and Conventional Commits
+
+This project uses **pre-commit hooks** to enforce code quality and **conventional commits** for commit messages.
+
+This pre-commit script runs automatically before each commit to check code formatting, linting, and tests.
 
 ---
 
