@@ -11,6 +11,7 @@ type Response struct {
 	Success    bool        `json:"success"`
 	Message    string      `json:"message"`
 	Data       interface{} `json:"data,omitempty"`
+	Meta       interface{} `json:"meta,omitempty"`
 	Error      string      `json:"error,omitempty"`
 }
 
@@ -20,6 +21,16 @@ func NewSuccessResponse(message string, data interface{}) Response {
 		Success:    true,
 		Message:    message,
 		Data:       data,
+	}
+}
+
+func NewPaginatedResponse(message string, data interface{}, meta interface{}) Response {
+	return Response{
+		StatusCode: http.StatusOK,
+		Success:    true,
+		Message:    message,
+		Data:       data,
+		Meta:       meta,
 	}
 }
 
