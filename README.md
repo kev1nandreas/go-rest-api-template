@@ -71,6 +71,8 @@ go-rest-api-template/
 │   │   └── user.go
 │   └── response
 │       └── response.go
+│   └── pagination
+│       └── pagination.go
 ├── scripts
 └── tests
 ```
