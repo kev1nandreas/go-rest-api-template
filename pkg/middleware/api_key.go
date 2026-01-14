@@ -2,20 +2,24 @@ package middleware
 
 import (
 	"net/http"
-	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/kev1nandreas/go-rest-api-template/env"
+	"github.com/kev1nandreas/go-rest-api-template/pkg/auth"
+	"github.com/kev1nandreas/go-rest-api-template/pkg/response"
 )
 
 func APIKeyAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		apiKey := c.GetHeader("X-API-Key")
-		if apiKey == os.Getenv("API_SECRET_KEY") {
+		if apiKey == env.GetEnvString("API_SECRET_KEY", auth.GenerateRandomKey()) {
 			c.Next()
 		} else {
-			c.JSON(http.StatusUnauthorized, gin.H{
-				"error": "Unauthorized",
-			})
+			response.NewErrorResponse(
+				http.StatusUnauthorized,
+				"Unauthorized",
+				"Invalid API Key",
+			).Send(c)
 			c.Abort()
 		}
 	}

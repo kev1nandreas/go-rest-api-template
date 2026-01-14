@@ -3,10 +3,10 @@ package auth
 import (
 	"crypto/rand"
 	"encoding/base64"
-	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt"
+	"github.com/kev1nandreas/go-rest-api-template/env"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -16,7 +16,7 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
-var JwtKey = []byte(os.Getenv("JWT_SECRET_KEY"))
+var JwtKey = []byte(env.GetEnvString("JWT_SECRET_KEY", GenerateRandomKey()))
 
 func HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)

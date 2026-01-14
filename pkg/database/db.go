@@ -43,6 +43,7 @@ func (db *GormDatabase) Error() error {
 }
 
 func NewDatabase() *gorm.DB {
+	isUseMigration := env.GetEnvBool("APP_MIGRATIONS", false)
 	var database *gorm.DB
 	var err error
 
@@ -71,7 +72,11 @@ func NewDatabase() *gorm.DB {
 		}
 	}
 
-	migration.Migrate(database)
+	if isUseMigration {
+		if err := migration.Migrate(database); err != nil {
+			log.Fatalf("Failed to migrate database: %v", err)
+		}
+	}
 
 	return database
 }
