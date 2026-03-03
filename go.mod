@@ -4,7 +4,7 @@ go 1.25.5
 
 require (
 	github.com/araujo88/gin-gonic-xss-middleware v0.0.0-20221014023455-d89f16de6a7e
-	github.com/brianvoe/gofakeit/v7 v7.14.0
+	github.com/brianvoe/gofakeit/v7 v7.14.1
 	github.com/gin-contrib/cors v1.7.6
 	github.com/gin-contrib/secure v1.1.2
 	github.com/gin-gonic/gin v1.11.0
